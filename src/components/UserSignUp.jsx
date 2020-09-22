@@ -45,9 +45,19 @@ export default function UserSignUp() {
       )}
 
       <label>Email</label>
-      <input type='email' name='email' ref={register({required: true})} />
+      <input
+        type='email'
+        name='email'
+        ref={register({
+          required: true,
+          pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+        })}
+      />
       {errors.email && errors.email.type === 'required' && (
         <p>Email is required</p>
+      )}
+      {errors.email && errors.email.type === 'pattern' && (
+        <p>Email is not valid</p>
       )}
 
       <label>About you</label>
